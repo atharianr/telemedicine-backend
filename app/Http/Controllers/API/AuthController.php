@@ -12,33 +12,26 @@ class AuthController extends Controller
 {
   public function register(Request $request)
   {
-    try {
-      $data = $request->validate([
-        'name' => 'required|string|max:255',
-        'email' => 'required|email|max:255|unique:users,email',
-        'password' => 'required|string',
-      ]);
+    $data = $request->validate([
+    'name' => 'required|string|max:255',
+    'email' => 'required|email|max:255|unique:users,email',
+    'password' => 'required|string',
+    ]);
 
-      $user = User::create([
-        'name' => $data['name'],
-        'email' => $data['email'],
-        'password' => Hash::make($data['password']),
-      ]);
+    $user = User::create([
+    'name' => $data['name'],
+    'email' => $data['email'],
+    'password' => Hash::make($data['password']),
+    ]);
 
-      $token = $user->createToken('projectToken')->plainTextToken;
+    $token = $user->createToken('projectToken')->plainTextToken;
 
-      return response()->json([
-        'code' => 201,
-        'message' => 'User Created',
-        'data' => $user,
-        'token' => $token
-      ], 201);
-    } catch (Exception $error) {
-      return response()->json([
-        'code' => 400,
-        'message' => $error->getMessage()
-      ], 400);
-    }
+    return response()->json([
+    'code' => 201,
+    'message' => 'User Created',
+    'data' => $user,
+    'token' => $token
+    ], 201);
   }
 
   public function login(Request $request)
@@ -59,7 +52,7 @@ class AuthController extends Controller
       $token = $user->createToken('mahasiswaToken')->plainTextToken;
       $response = [
         'code' => 200,
-        'user' => $user,
+        'data' => $user,
         'token' => $token
       ];
 
