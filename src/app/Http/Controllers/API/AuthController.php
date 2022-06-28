@@ -13,24 +13,23 @@ class AuthController extends Controller
   public function register(Request $request)
   {
     $data = $request->validate([
-    'name' => 'required|string|max:255',
-    'email' => 'required|email|max:255|unique:users,email',
-    'password' => 'required|string',
+      'name' => 'required|string|max:255',
+      'email' => 'required|email|max:255|unique:users,email',
+      'password' => 'required|string',
     ]);
 
     $user = User::create([
-    'name' => $data['name'],
-    'email' => $data['email'],
-    'password' => Hash::make($data['password']),
+      'name' => $data['name'],
+      'email' => $data['email'],
+      'password' => Hash::make($data['password']),
     ]);
 
     $token = $user->createToken('projectToken')->plainTextToken;
 
     return response()->json([
-    'code' => 201,
-    'message' => 'User Created',
-    'data' => $user,
-    'token' => $token
+      'message' => 'User Created',
+      'data' => $user,
+      'token' => $token
     ], 201);
   }
 
@@ -45,13 +44,12 @@ class AuthController extends Controller
 
     if (!$user || !Hash::check($data['password'], $user->password)) {
       return response()->json([
-        'code' => 401,
         'message' => 'Invalid Credential',
       ], 401);
     } else {
       $token = $user->createToken('mahasiswaToken')->plainTextToken;
       $response = [
-        'code' => 200,
+        'message' => 'Login Success!',
         'data' => $user,
         'token' => $token
       ];

@@ -18,10 +18,10 @@ use App\Http\Controllers\API\EmailVerificationController;
 
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
+Route::get('verify-email/{id}/{hash}', [EmailVerificationController::class,'verify'])->name('verification.verify');
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
     Route::post('email/verification-notification', [EmailVerificationController::class,'sendVerificationEmail']);
-    Route::post('verify-email/{id}/{hash}', [EmailVerificationController::class,'verify'])->name('verification.verify');
 });
