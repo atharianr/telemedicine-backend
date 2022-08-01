@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\DoctorController;
 use App\Http\Controllers\API\EmailVerificationController;
 use App\Http\Controllers\API\UserController;
 
@@ -25,3 +25,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/user/edit', [UserController::class, 'editUser']);
     Route::post('email/verification-notification', [EmailVerificationController::class, 'sendVerificationEmail']);
 });
+
+Route::get('/doctor', [DoctorController::class, 'getAllDoctors']);
