@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\ArticleController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\DoctorController;
@@ -27,3 +28,5 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 Route::get('/doctor', [DoctorController::class, 'getAllDoctors']);
+Route::get('/article', [ArticleController::class, 'getAllArticles']);
+Route::get('/article/search', [ArticleController::class, 'searchArticle']);

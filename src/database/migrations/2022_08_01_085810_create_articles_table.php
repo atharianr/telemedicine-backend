@@ -16,8 +16,12 @@ return new class extends Migration
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('content');
-            $table->string('image');
+            $table->string('definition');
+            $table->string('symptom');
+            $table->string('complication');
+            $table->string('diagnosys');
+            $table->string('treatment');
+            $table->string('image_url');
             $table->timestamps();
         });
     }
