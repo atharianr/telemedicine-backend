@@ -4,4 +4,4 @@ RUN docker-php-ext-install pdo pdo_mysql
 
 COPY . /var/www/html
 
-RUN php artisan serve --host=172.17.0.2 --port=9001 &
+RUN php artisan serve --host=172.17.0.10 --port=9001 &
