@@ -26,7 +26,7 @@ class DoctorController extends Controller
     }
   }
 
-  public function searchArticle(Request $request)
+  public function searchDoctor(Request $request)
   {
 
     $pagination  = 5;
@@ -42,7 +42,7 @@ class DoctorController extends Controller
       return response()->json([
         'code' => 200,
         'message' => 'Query doctors fetched.',
-        'data' => $data
+        'data' => $data->data
       ]);
     } else {
       return response()->json([

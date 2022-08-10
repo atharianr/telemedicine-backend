@@ -42,7 +42,7 @@ class ArticleController extends Controller
             return response()->json([
                 'code' => 200,
                 'message' => 'Query articles fetched.',
-                'data' => $data
+                'data' => $data->data
             ]);
         } else {
             return response()->json([
