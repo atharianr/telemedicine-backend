@@ -28,6 +28,7 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 Route::get('/doctor', [DoctorController::class, 'getAllDoctors']);
-Route::get('/doctor/search', [DoctorController::class, 'searchDoctor']);
+Route::get('/doctor/search', [DoctorController::class, 'searchFilterDoctor']);
 Route::get('/article', [ArticleController::class, 'getAllArticles']);
 Route::get('/article/search', [ArticleController::class, 'searchArticle']);
+

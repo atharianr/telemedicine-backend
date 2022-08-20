@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Doctor;
-use Illuminate\Http\Client\Request;
+use Illuminate\Http\Request;
 
 class DoctorController extends Controller
 {
@@ -26,14 +26,24 @@ class DoctorController extends Controller
     }
   }
 
-  public function searchDoctor(Request $request)
+  public function searchFilterDoctor(Request $request)
   {
-
     $pagination  = 5;
     $data = Doctor::when($request->keyword, function ($query) use ($request) {
       $query
         ->where('name', 'like', "%{$request->keyword}%");
-    })->orderBy('created_at', 'desc')->paginate($pagination);
+    })
+    ->when($request->filter, function ($query) use ($request) {
+      $filterWord = explode('-',$request->filter);
+      foreach ($filterWord as $word) {
+        $query
+          ->orWhere('specialist', 'like', '%'.$word.'%');
+      }
+      
+    })
+    ->orderBy('created_at', 'desc')->paginate($pagination);
+    
+    // $data = Doctor::orderBy('created_at', 'desc')->paginate($pagination);
 
     $data = json_encode($data);
     $data = json_Decode($data);
