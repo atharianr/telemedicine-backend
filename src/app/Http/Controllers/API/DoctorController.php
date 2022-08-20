@@ -34,15 +34,16 @@ class DoctorController extends Controller
         ->where('name', 'like', "%{$request->keyword}%");
     })
     ->when($request->filter, function ($query) use ($request) {
-      $filterWord = explode('-',$request->filter);
-      foreach ($filterWord as $word) {
-        $query
-          ->orWhere('specialist', 'like', '%'.$word.'%');
-      }
+      $query->where(function($query2) use ($request){
+        $filterWord = explode('-',$request->filter);
+        foreach ($filterWord as $word) {
+          $query2->orWhere("specialist", "like", '%'.$word.'%');
+        }
+      });
       
     })
     ->orderBy('created_at', 'desc')->paginate($pagination);
-    
+
     // $data = Doctor::orderBy('created_at', 'desc')->paginate($pagination);
 
     $data = json_encode($data);
