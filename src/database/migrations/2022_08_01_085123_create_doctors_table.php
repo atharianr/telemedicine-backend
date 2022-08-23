@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('education');
             $table->string('education_year');
             $table->string('phone_number');
+            $table->string('photo');
             $table->timestamps();
         });
     }

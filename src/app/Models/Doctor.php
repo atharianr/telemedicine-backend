@@ -16,7 +16,8 @@ class Doctor extends Model
     'specialist',
     'education',
     'education_year',
-    'phone_number'
+    'phone_number',
+    'photo',
   ];
 
   protected $hidden = [];

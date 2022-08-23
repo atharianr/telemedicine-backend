@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('definition');
             $table->string('symptom');
             $table->string('complication');
+            $table->string('cause');
             $table->string('diagnosys');
             $table->string('treatment');
             $table->string('image_url');

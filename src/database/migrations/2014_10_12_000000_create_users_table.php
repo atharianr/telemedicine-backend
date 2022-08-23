@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('body_weight')->nullable();
             $table->string('blood_type')->nullable();
             $table->string('address')->nullable();
+            $table->string('photo')->nullable();
             $table->timestamps();
         });
     }

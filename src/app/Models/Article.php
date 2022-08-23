@@ -15,6 +15,7 @@ class Article extends Model
         'definition',
         'symptom',
         'complication',
+        'cause',
         'diagnosys',
         'treatment',
         'image_url'
