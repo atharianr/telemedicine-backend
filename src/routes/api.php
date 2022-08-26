@@ -26,13 +26,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/user/edit', [UserController::class, 'editUser']);
     Route::get('/user/post_image', [UserController::class, 'postUserPhoto']);
     Route::post('email/verification-notification', [EmailVerificationController::class, 'sendVerificationEmail']);
+    
+    Route::get('/doctor', [DoctorController::class, 'getAllDoctors']);
+    Route::get('/doctor/search', [DoctorController::class, 'searchFilterDoctor']);
+    Route::get('/doctor/{id}', [DoctorController::class, 'getDoctorDetail']);
+
+    Route::get('/article', [ArticleController::class, 'getAllArticles']);
+    Route::get('/article/search', [ArticleController::class, 'searchArticle']);
+    Route::get('/article/{id}', [ArticleController::class, 'getArticleDetail']);
 });
-
-Route::get('/doctor', [DoctorController::class, 'getAllDoctors']);
-Route::get('/doctor/search', [DoctorController::class, 'searchFilterDoctor']);
-Route::get('/doctor/{id}', [DoctorController::class, 'getDoctorDetail']);
-
-Route::get('/article', [ArticleController::class, 'getAllArticles']);
-Route::get('/article/search', [ArticleController::class, 'searchArticle']);
-Route::get('/article/{id}', [ArticleController::class, 'getArticleDetail']);
 

@@ -68,16 +68,16 @@ class DoctorController extends Controller
 	public function getDoctorDetail($id)
 	{
 		$data = Doctor::where('id', '=', $id)->get();
-		$exp = Experiences::where('doctor_id','=',$id)->get();
+		$exp = Experiences::where('doctor_id', '=', $id)->get();
 
 		$expArr = array();
-		foreach($exp as $obj){
+		foreach ($exp as $obj) {
 			$expObj = new stdClass();
 			$expObj->location = $obj->location;
 			$expObj->first_year = $obj->first_year;
 			$expObj->last_year = $obj->last_year;
 
-			array_push($expArr,$expObj);
+			array_push($expArr, $expObj);
 		}
 
 		$dataObj = new stdClass();

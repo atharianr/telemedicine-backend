@@ -28,12 +28,17 @@ class UserController extends Controller
     /** 
      * Decode Base64 String to Image
      * Save image to public directory
-     */
+     **/
     $userId = $user->id;
     $fileName = $userId . '.jpg';
-    $image = base64_decode($base64String);
     $directory = $userId . '/' . $fileName;
-    Storage::disk('public')->put($directory, $image);
+    if ($base64String  == "" || $base64String == null || $base64String == "null") {
+      Storage::disk('public')->delete($directory);
+      $directory = null;
+    } else {
+      $image = base64_decode($base64String);
+      Storage::disk('public')->put($directory, $image);
+    }
 
     $user->name = $request['name'];
     $user->gender = $request['gender'];
