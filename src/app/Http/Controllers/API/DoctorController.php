@@ -4,8 +4,10 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Doctor;
+use App\Models\Experiences;
 use Dflydev\DotAccessData\Data;
 use Illuminate\Http\Request;
+use stdClass;
 
 class DoctorController extends Controller
 {
@@ -66,12 +68,33 @@ class DoctorController extends Controller
 	public function getDoctorDetail($id)
 	{
 		$data = Doctor::where('id', '=', $id)->get();
+		$exp = Experiences::where('doctor_id','=',$id)->get();
+
+		$expArr = array();
+		foreach($exp as $obj){
+			$expObj = new stdClass();
+			$expObj->location = $obj->location;
+			$expObj->first_year = $obj->first_year;
+			$expObj->last_year = $obj->last_year;
+
+			array_push($expArr,$expObj);
+		}
+
+		$dataObj = new stdClass();
+		$dataObj->name = $data[0]->name;
+		$dataObj->specialist = $data[0]->specialist;
+		$dataObj->education = $data[0]->education;
+		$dataObj->education_year = $data[0]->education_year;
+		$dataObj->phone_number = $data[0]->phone_number;
+		$dataObj->photo = $data[0]->photo;
+		$dataObj->experience = $expArr;
+
 
 		if (count($data) > 0) {
 			return response()->json([
 				'code' => 200,
 				'message' => 'Doctor detail fetched.',
-				'data' => $data[0]
+				'data' => $dataObj
 			], 200);
 		} else {
 			return response()->json([
