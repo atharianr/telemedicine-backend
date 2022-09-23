@@ -35,6 +35,8 @@ class UserController extends Controller
     if ($base64String  == "" || $base64String == null || $base64String == "null") {
       Storage::disk('public')->delete($directory);
       $directory = null;
+    } elseif ($base64String  == "there_is_image") {
+      
     } else {
       $image = base64_decode($base64String);
       Storage::disk('public')->put($directory, $image);
