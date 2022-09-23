@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\API\ArticleController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
-use App\Http\Controllers\API\DoctorController;
-use App\Http\Controllers\API\EmailVerificationController;
+use App\Http\Controllers\API\ChatController;
 use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\DoctorController;
+use App\Http\Controllers\API\ArticleController;
+use App\Http\Controllers\API\EmailVerificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,5 +36,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/article', [ArticleController::class, 'getAllArticles']);
     Route::get('/article/search', [ArticleController::class, 'searchArticle']);
     Route::get('/article/{id}', [ArticleController::class, 'getArticleDetail']);
+
+    Route::post('/doctor/chat/send', [ChatController::class, 'sendChat']);
 });
 
