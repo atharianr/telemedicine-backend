@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('blood_type')->nullable();
             $table->string('address')->nullable();
             $table->string('photo')->nullable();
+            $table->string('fcm_token')->nullable();
             $table->timestamps();
         });
     }

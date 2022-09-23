@@ -62,6 +62,22 @@ class UserController extends Controller
     return response()->json($response, 201);
   }
 
+  public function putTokenFCM(Request $request)
+  {
+    $user = $request->user();
+
+    $user->fcm_token = $request['fcm_token'];
+
+    $user->save();
+
+    $response = [
+      'message' => 'FCM Token updated.',
+      'data' => $user
+    ];
+
+    return response()->json($response, 201);
+  }
+
   public function postUserPhoto(Request $request)
   {
     $user = $request->user();

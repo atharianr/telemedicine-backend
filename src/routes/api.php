@@ -24,6 +24,7 @@ Route::get('verify-email/{id}/{hash}', [EmailVerificationController::class, 'ver
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', [UserController::class, 'getUser']);
     Route::put('/user/edit', [UserController::class, 'editUser']);
+    Route::put('/user/edit/fcm_token', [UserController::class, 'putTokenFCM']);
     Route::get('/user/post_image', [UserController::class, 'postUserPhoto']);
     Route::post('email/verification-notification', [EmailVerificationController::class, 'sendVerificationEmail']);
     
